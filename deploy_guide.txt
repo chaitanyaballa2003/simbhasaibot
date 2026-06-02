@@ -1,0 +1,59 @@
+PC LEKUNDA 24/7 BOT RUN CHEYYADAM
+
+Mee PC off unna bot run avvali ante cloud hosting kavali.
+Mobile lo Telegram use cheyyachu, kani bot process Railway/Render lanti cloud server lo run avvali.
+
+RECOMMENDED: RAILWAY
+
+Why:
+- Python app deploy easy
+- Start command file already added: railway.json
+- Bot polling ki public website/domain avasaram ledu
+
+Steps:
+
+1. Project ni GitHub lo private repository ga upload cheyyandi.
+   Important: .env upload cheyyakandi.
+
+2. Railway open cheyyandi:
+   https://railway.com
+
+3. New Project -> Deploy from GitHub repo.
+
+4. Mee restaurant_ai_bot_pro repo select cheyyandi.
+
+5. Variables lo add cheyyandi:
+   TELEGRAM_BOT_TOKEN
+   OPENAI_API_KEY
+   OPENAI_MODEL=gpt-4o-mini
+
+6. Start command:
+   python bot.py
+
+7. Deploy complete ayyaka Telegram lo /start test cheyyandi.
+
+
+ALTERNATIVE: RENDER
+
+Render lo background worker use cheyyandi.
+render.yaml file already added.
+
+Steps:
+
+1. GitHub private repo upload.
+2. Render -> New -> Blueprint.
+3. Repo connect cheyyandi.
+4. Environment variables enter cheyyandi:
+   TELEGRAM_BOT_TOKEN
+   OPENAI_API_KEY
+   OPENAI_MODEL=gpt-4o-mini
+5. Deploy.
+
+
+IMPORTANT NOTES
+
+- .env file ni cloud/GitHub lo upload cheyyakandi.
+- Telegram token and OpenAI key cloud dashboard Variables/Environment section lo matrame add cheyyandi.
+- Cloud run ayyaka PC avasaram ledu.
+- Local CSV data cloud lo permanent ga undakapovachu. Production kosam database or persistent volume better.
+- Cloud hosting and OpenAI API usage ki charges ravachu.
