@@ -8,7 +8,7 @@ truststore.inject_into_ssl()
 
 import pandas as pd
 from dotenv import load_dotenv
-from openai import OpenAI
+from openai import APIConnectionError, APIError, AuthenticationError, OpenAI, RateLimitError
 from telegram import Update
 from telegram.ext import (
     ApplicationBuilder,
@@ -130,6 +130,36 @@ def require_token() -> str:
             "then add TELEGRAM_BOT_TOKEN=your_token to the .env file."
         )
     return token
+
+
+def ai_error_message(exc: Exception) -> str:
+    error_text = str(exc).lower()
+
+    if isinstance(exc, RateLimitError):
+        if (
+            "insufficient_quota" in error_text
+            or "current quota" in error_text
+            or "billing" in error_text
+            or "run out of credits" in error_text
+        ):
+            return (
+                "AI quota/credits ayipoyayi. OpenAI API billing or credits add cheyyali.\n\n"
+                "Normal commands still work:\n"
+                "/sale, /purchase, /stock, /inventory, /report, /profit, /vendors"
+            )
+
+        return "AI rate limit hit ayyindi. Konchem time tarvata malli try cheyyandi."
+
+    if isinstance(exc, AuthenticationError):
+        return "AI key problem undi. OPENAI_API_KEY correct ga set chesaro check cheyyali."
+
+    if isinstance(exc, APIConnectionError):
+        return "AI service ki connect avvalekapoyindi. Internet/server connection check cheyyali."
+
+    if isinstance(exc, APIError):
+        return "AI service temporary problem. Konchem time tarvata malli try cheyyandi."
+
+    return "AI reply generate avvaledu. Konchem time tarvata malli try cheyyandi."
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -283,7 +313,7 @@ async def ai_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(reply)
 
     except Exception as exc:
-        await update.message.reply_text(f"AI Error: {exc}")
+        await update.message.reply_text(ai_error_message(exc))
 
 
 def main():
