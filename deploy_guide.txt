@@ -26,6 +26,7 @@ Steps:
    TELEGRAM_BOT_TOKEN
    OPENAI_API_KEY
    OPENAI_MODEL=gpt-4o-mini
+   OPENAI_TRANSCRIBE_MODEL=gpt-4o-mini-transcribe
 
 6. Start command:
    python bot.py
@@ -47,6 +48,7 @@ Steps:
    TELEGRAM_BOT_TOKEN
    OPENAI_API_KEY
    OPENAI_MODEL=gpt-4o-mini
+   OPENAI_TRANSCRIBE_MODEL=gpt-4o-mini-transcribe
 5. Deploy.
 
 

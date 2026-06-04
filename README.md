@@ -8,6 +8,7 @@ Telegram bot for restaurant sales, purchases, inventory, vendor tracking, simple
 - Inventory updates
 - Profit and vendor reports
 - AI answers using your current restaurant CSV data
+- Telugu voice notes for sales, purchases, stock updates, and reports
 - Flask dashboard API at `/dashboard`
 - Local CSV storage
 
@@ -24,6 +25,7 @@ Telegram bot for restaurant sales, purchases, inventory, vendor tracking, simple
 TELEGRAM_BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
 OPENAI_API_KEY=YOUR_OPENAI_KEY
 OPENAI_MODEL=gpt-4o-mini
+OPENAI_TRANSCRIBE_MODEL=gpt-4o-mini-transcribe
 ```
 
 3. Install dependencies:
@@ -61,6 +63,20 @@ Chicken stock?
 Top expenses?
 Monthly sales?
 ```
+
+## Voice Commands
+
+Send a Telegram voice note in Telugu, English, or mixed wording:
+
+```text
+12000 cash sale add chey
+chicken 5000 vendor Raju purchase
+chicken 50kg stock
+profit entha?
+report ivvu
+```
+
+The bot transcribes the voice note, detects the action, updates data when needed, and replies as a text message.
 
 ## Dashboard API
 
